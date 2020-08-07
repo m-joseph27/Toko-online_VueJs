@@ -53,6 +53,9 @@ export default {
     color: black;
     background-color: #af2d1a;
     font-size: 10px;
+    .sr-only{
+      background-color: black;
+    }
   }
   .carousel-control-next-icon{
     width: 50px;

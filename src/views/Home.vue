@@ -3,9 +3,10 @@
     <div class="List">
       <h1>Our  product</h1>
     </div>
-  <navbar/>
+  <navbar @login-clicked="showLogin"/>
   <carousel/>
   <product/>
+  <login/>
   </div>
 </template>
 
@@ -14,6 +15,7 @@
 import Navbar from '../components/Navbar.vue';
 import Carousel from '../components/Carousel.vue';
 import Product from '../components/Product.vue';
+import Login from '../components/Login.vue';
 
 export default {
   name: 'Home',
@@ -21,6 +23,12 @@ export default {
     Navbar,
     Carousel,
     Product,
+    Login,
+  },
+  methods: {
+    showLogin() {
+      document.querySelector('.loginWrapper').classList.add('loginActive');
+    },
   },
 };
 </script>

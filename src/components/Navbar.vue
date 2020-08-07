@@ -14,7 +14,7 @@
         <a class="nav-link active" href="#">Beranda <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#">Admin</a>
         <div class="btn-parent">
-          <button class="btn-login">Login</button>
+          <button class="btn-login" @click="$emit('login-clicked')">Login</button>
           <button class="btn-register">Register</button>
         </div>
       </div>
