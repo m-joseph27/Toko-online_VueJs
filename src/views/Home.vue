@@ -3,10 +3,12 @@
     <div class="List">
       <h1>Our  product</h1>
     </div>
-  <navbar @login-clicked="showLogin"/>
+  <navbar @login-clicked="showLogin"
+          @register-clicked="showRegister"/>
   <carousel/>
   <product/>
-  <login/>
+  <login @close-login="closeLogin"/>
+  <register @close-register="closeRegister"/>
   </div>
 </template>
 
@@ -16,6 +18,7 @@ import Navbar from '../components/user/Navbar.vue';
 import Carousel from '../components/user/Carousel.vue';
 import Product from '../components/user/Product.vue';
 import Login from '../components/user/Login.vue';
+import Register from '../components/user/Register.vue';
 
 export default {
   name: 'Home',
@@ -24,10 +27,20 @@ export default {
     Carousel,
     Product,
     Login,
+    Register,
   },
   methods: {
     showLogin() {
       document.querySelector('.loginWrapper').classList.add('loginActive');
+    },
+    closeLogin() {
+      document.querySelector('.loginWrapper').classList.remove('loginActive');
+    },
+    showRegister() {
+      document.querySelector('.registerWrapper').classList.add('registerActive');
+    },
+    closeRegister() {
+      document.querySelector('.registerWrapper').classList.remove('registerActive');
     },
   },
 };

@@ -2,12 +2,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Admin from '../views/AdminPage.vue';
+import Detail from '../components/user/Detail.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
   },
@@ -15,6 +16,11 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     component: Admin,
+  },
+  {
+    path: '/detail',
+    name: 'Detail',
+    component: Detail,
   },
 ];
 

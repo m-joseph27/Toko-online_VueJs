@@ -11,13 +11,13 @@
         <div class="search">
           <input type="text">
         </div>
-        <router-link class="nav-link active" to="/home">Beranda
+        <router-link class="nav-link active" to="/">Beranda
           <span class="sr-only">(current)</span>
         </router-link>
         <router-link class="nav-link" to="/admin">Admin</router-link>
         <div class="btn-parent">
           <button class="btn-login" @click="$emit('login-clicked')">Login</button>
-          <button class="btn-register">Register</button>
+          <button class="btn-register" @click="$emit('register-clicked')">Register</button>
         </div>
       </div>
     </div>

@@ -10,9 +10,9 @@
       <div class="navbar-nav">
         <router-link class="nav-link active" to="/admin">Admin
         </router-link>
-        <router-link class="nav-link" to="/home">Beranda</router-link>
+        <router-link class="nav-link" to="/">Beranda</router-link>
         <div class="btn-parent">
-          <button class="btn-login" @click="$emit('login-clicked')">Login</button>
+          <button class="btn-login" >Login</button>
         </div>
       </div>
     </div>

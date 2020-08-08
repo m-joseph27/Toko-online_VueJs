@@ -1,9 +1,11 @@
 <template>
   <div class="productWrapper">
     <div class="cardWrapper">
-      <div class="img-product">
-        <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-      </div>
+      <router-link to="/detail">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
       <div class="product">
         <p>DVD - Mimpi 1 Juta Dolar</p>
       </div>

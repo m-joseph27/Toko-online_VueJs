@@ -1,14 +1,16 @@
 <template>
-  <div class="loginWrapper">
+  <div class="registerWrapper">
     <div class="bodyLogin">
       <div class="textLogin">
-        <h4>Login</h4>
+        <h4>Register</h4>
         <div class="closeBtn">
-          <i class="fas fa-times" @click="$emit('close-login')"></i>
+          <i class="fas fa-times" @click="$emit('close-register')"></i>
         </div>
       </div>
       <div class="formLogin">
         <form action="/">
+          <label for="fname">Username:</label><br>
+          <input type="text" id="fname" placeholder="yusuf"><br><br>
           <label for="fname">Email:</label><br>
           <input type="email" id="fname" placeholder="example@gmail.com"><br><br>
           <label for="lname">Password:</label><br>
@@ -16,8 +18,8 @@
           <input class="submit" type="submit" value="Submit">
         </form>
       </div>
-      <div class="btnLogin">
-        <p>Belum punya akun? <span>Daftar </span></p>
+      <div class="btnRegister">
+        <p>Sudah punya akun? <span @click="$('login-clicked')">Login</span></p>
       </div>
     </div>
   </div>
@@ -30,13 +32,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .loginWrapper.loginActive{
+  .registerWrapper.registerActive{
     visibility: visible;
     opacity: 1;
     transition: ease .5s;
   }
 
-  .loginWrapper{
+  .registerWrapper{
     background-color: #5a5d612c;
     width: 100%;
     height: 100%;
@@ -48,10 +50,13 @@ export default {
     opacity: 0;
     .bodyLogin{
       width: 350px;
-      height: 450px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background-color: #fff;
       position: absolute;
-      top: 100px;
+      top: 80px;
       left: 550px;
       border-radius: 5px;
       box-shadow: 1px 5px 5px 5px rgba(128, 128, 128, 0.342);
@@ -81,6 +86,7 @@ export default {
       .formLogin{
         width: 100%;
         height: 300px;
+        margin-bottom: 90px;
         label{
           font-size: 15px;
           font-weight: 700;
@@ -99,7 +105,7 @@ export default {
           font-weight: 700;
         }
       }
-      .btnLogin{
+      .btnRegister{
         p{
           font-size: 12px;
           font-weight: 600;
