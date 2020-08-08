@@ -9,6 +9,7 @@
   <product/>
   <login @close-login="closeLogin"/>
   <register @close-register="closeRegister"/>
+  <Footer/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import Carousel from '../components/user/Carousel.vue';
 import Product from '../components/user/Product.vue';
 import Login from '../components/user/Login.vue';
 import Register from '../components/user/Register.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'Home',
@@ -28,6 +30,7 @@ export default {
     Product,
     Login,
     Register,
+    Footer,
   },
   methods: {
     showLogin() {

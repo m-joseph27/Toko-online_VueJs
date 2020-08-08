@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <img src="../../assets/img/logo.png" width="70px" height="50px" alt="logo">
+    <router-link to="/">
+      <img src="../../assets/img/logo.png" width="70px" height="50px" alt="logo">
+    </router-link>
     <button class="navbar-toggler" type="button"
       data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +21,13 @@
           <button class="btn-login" @click="$emit('login-clicked')">Login</button>
           <button class="btn-register" @click="$emit('register-clicked')">Register</button>
         </div>
+        <div class="cart">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="30px" height="25px"
+          alt="chart-maroon">
+          <div class="selectedItem">
+            <p>0</p>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -34,9 +43,10 @@ export default {
 <style lang="scss" scoped>
   .navbar{
   background-color: white;
+  width: 100%;
   height: 80px;
   padding-left: 50px;
-  position: relative;
+  position: fixed;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.200);
 }
 .navbar-collapse{
@@ -61,6 +71,7 @@ export default {
   .btn-parent{
     display: flex;
     flex-direction: row;
+    display: none;
     button{
       width: 100px;
       margin: 0 10px;
@@ -78,6 +89,25 @@ export default {
       color: #af2d1a;
       font-weight: bold;
       border: 1px solid #af2d1a;
+    }
+  }
+  .cart{
+    width: 80px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    position: relative;
+    cursor: pointer;
+    .selectedItem{
+      background-color: #af2d1a;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      position: absolute;
+      top: 0;
+      right: 15px;
+      color: white;
     }
   }
 }

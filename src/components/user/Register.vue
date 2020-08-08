@@ -10,9 +10,9 @@
       <div class="formLogin">
         <form action="/">
           <label for="fname">Username:</label><br>
-          <input type="text" id="fname" placeholder="yusuf"><br><br>
+          <input type="text" id="fname" placeholder="input your username"><br><br>
           <label for="fname">Email:</label><br>
-          <input type="email" id="fname" placeholder="example@gmail.com"><br><br>
+          <input type="email" id="fname" placeholder="input your email"><br><br>
           <label for="lname">Password:</label><br>
           <input type="password" id="lname"><br><br><br>
           <input class="submit" type="submit" value="Submit">

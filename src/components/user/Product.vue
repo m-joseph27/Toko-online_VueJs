@@ -1,7 +1,7 @@
 <template>
   <div class="productWrapper">
     <div class="cardWrapper">
-      <router-link to="/detail">
+      <router-link to="/detail-product">
         <div class="img-product">
           <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
         </div>
@@ -11,7 +11,7 @@
       </div>
       <div class="price">
         <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart.png" width="20px" height="20px" alt="">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
         <button class="btn-price">Rp. 150.000</button>
       </div>
@@ -73,6 +73,9 @@ export default {
         // box-shadow: 1px 5px 5px rgb(71, 71, 71);
         outline: none;
         border: none;
+        &:active{
+          transform: translateY(2px);
+        }
       }
     }
   }

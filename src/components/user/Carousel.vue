@@ -37,9 +37,8 @@ export default {
 
 <style lang="scss" scoped>
   .carousel-item{
-    margin-top: 10px;
     height: 500px;
-    // background-color: rgba(192, 192, 192, 0.425);
+    margin-top: 100px;
     img{
       object-fit: contain;
       width: 100%;
@@ -53,8 +52,8 @@ export default {
     color: black;
     background-color: #af2d1a;
     font-size: 10px;
-    .sr-only{
-      background-color: black;
+    &:active{
+      transform: translateY(2px);
     }
   }
   .carousel-control-next-icon{
@@ -63,5 +62,9 @@ export default {
     border-radius: 100%;
     color: black;
     background-color: #af2d1a;
+    &:active{
+      transform: translateY(2px);
+    }
   }
+
 </style>
