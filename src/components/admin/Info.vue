@@ -7,7 +7,7 @@
       <div class="listOrder">
         <p>List Order</p>
       </div>
-      <div class="listUser">
+      <div class="listUser" @click="$('user-clicked')">
         <p>List User</p>
       </div>
     </div>
