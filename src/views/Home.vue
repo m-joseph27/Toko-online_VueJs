@@ -4,11 +4,15 @@
       <h1>Our  product</h1>
     </div>
   <navbar @login-clicked="showLogin"
-          @register-clicked="showRegister"/>
+          @register-clicked="showRegister"
+          @modal-clicked="showModal"
+          @admin-clicked="showLoginAdmin"/>
   <carousel/>
   <product/>
   <login @close-login="closeLogin"/>
   <register @close-register="closeRegister"/>
+  <ModalUser/>
+  <login-admin @close-admin="closeLoginAdmin"/>
   <Footer/>
   </div>
 </template>
@@ -21,6 +25,8 @@ import Product from '../components/user/Product.vue';
 import Login from '../components/user/Login.vue';
 import Register from '../components/user/Register.vue';
 import Footer from '../components/Footer.vue';
+import ModalUser from '../components/user/ModalUser.vue';
+import LoginAdmin from '../components/admin/Login.vue';
 
 export default {
   name: 'Home',
@@ -31,6 +37,8 @@ export default {
     Login,
     Register,
     Footer,
+    ModalUser,
+    LoginAdmin,
   },
   methods: {
     showLogin() {
@@ -44,6 +52,15 @@ export default {
     },
     closeRegister() {
       document.querySelector('.registerWrapper').classList.remove('registerActive');
+    },
+    showModal() {
+      document.querySelector('.modalWrapper').classList.toggle('modalWrapperActive');
+    },
+    showLoginAdmin() {
+      document.querySelector('.loginAdminWrapper').classList.add('loginAdminActive');
+    },
+    closeLoginAdmin() {
+      document.querySelector('.loginAdminWrapper').classList.remove('loginAdminActive');
     },
   },
 };

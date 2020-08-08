@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Admin from '../views/AdminPage.vue';
 import Detail from '../components/user/Detail.vue';
+import User from '../views/User.vue';
 
 Vue.use(VueRouter);
 
@@ -19,13 +20,13 @@ const routes = [
   },
   {
     path: '/detail-product',
-    name: 'Detail',
+    name: 'User',
     component: Detail,
   },
   {
     path: '/user-detail',
-    name: 'Detail',
-    component: Detail,
+    name: 'User',
+    component: User,
   },
 ];
 

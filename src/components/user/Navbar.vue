@@ -16,7 +16,9 @@
         <router-link class="nav-link active" to="/">Beranda
           <span class="sr-only">(current)</span>
         </router-link>
-        <router-link class="nav-link" to="/admin">Admin</router-link>
+        <span class="nav-link" @click="$emit('admin-clicked')"
+          >Admin
+          </span>
         <div class="btn-parent">
           <button class="btn-login" @click="$emit('login-clicked')">Login</button>
           <button class="btn-register" @click="$emit('register-clicked')">Register</button>
@@ -27,6 +29,9 @@
           <div class="selectedItem">
             <p>0</p>
           </div>
+        </div>
+        <div class="user" @click="$emit('modal-clicked')">
+          <img src="../../assets/img/user.png" alt="user">
         </div>
       </div>
     </div>
@@ -48,6 +53,9 @@ export default {
   padding-left: 50px;
   position: fixed;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.200);
+  span{
+    cursor: pointer;
+  }
 }
 .navbar-collapse{
   // display: flex;
@@ -108,6 +116,19 @@ export default {
       top: 0;
       right: 15px;
       color: white;
+    }
+  }
+  .user{
+    width: 50px;
+    height: 50px;
+    background-color: #af2d1a;
+    border-radius: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+    img{
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
   }
 }

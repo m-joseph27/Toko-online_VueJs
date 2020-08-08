@@ -11,9 +11,6 @@
         <router-link class="nav-link active" to="/admin">Admin
         </router-link>
         <router-link class="nav-link" to="/">Beranda</router-link>
-        <div class="btn-parent">
-          <button class="btn-login" >Login</button>
-        </div>
       </div>
     </div>
   </nav>
@@ -31,7 +28,6 @@ export default {
   background-color: #af2d1a;
   height: 80px;
   padding-left: 50px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.200);
 }
 .navbar-collapse{
   justify-content: flex-end;

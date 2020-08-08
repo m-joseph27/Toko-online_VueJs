@@ -1,17 +1,23 @@
 <template>
   <div class="admin">
     <Nav/>
+    <info/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 
 import Nav from '../components/admin/Nav.vue';
+import Footer from '../components/Footer.vue';
+import Info from '../components/admin/Info.vue';
 
 export default {
   name: 'Home',
   components: {
     Nav,
+    Footer,
+    Info,
   },
   methods: {
   },
