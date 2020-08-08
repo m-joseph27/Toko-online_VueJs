@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <img src="../assets/img/logo.png" width="70px" height="50px" alt="logo">
+    <img src="../../assets/img/logo.png" width="70px" height="50px" alt="logo">
     <button class="navbar-toggler" type="button"
       data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,8 +11,10 @@
         <div class="search">
           <input type="text">
         </div>
-        <a class="nav-link active" href="#">Beranda <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="#">Admin</a>
+        <router-link class="nav-link active" to="/home">Beranda
+          <span class="sr-only">(current)</span>
+        </router-link>
+        <router-link class="nav-link" to="/admin">Admin</router-link>
         <div class="btn-parent">
           <button class="btn-login" @click="$emit('login-clicked')">Login</button>
           <button class="btn-register">Register</button>
@@ -35,6 +37,7 @@ export default {
   height: 80px;
   padding-left: 50px;
   position: relative;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.200);
 }
 .navbar-collapse{
   // display: flex;

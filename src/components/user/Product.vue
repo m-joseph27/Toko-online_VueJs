@@ -2,14 +2,14 @@
   <div class="productWrapper">
     <div class="cardWrapper">
       <div class="img-product">
-        <img src="../assets/img/dvd_merryriana.jpg" alt="dvd">
+        <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
       </div>
       <div class="product">
         <p>DVD - Mimpi 1 Juta Dolar</p>
       </div>
       <div class="price">
         <button class="btn-buy">
-          <img src="../assets/img/shopping-cart.png" width="20px" height="20px" alt="">
+          <img src="../../assets/img/shopping-cart.png" width="20px" height="20px" alt="">
           Add To Cart</button>
         <button class="btn-price">Rp. 150.000</button>
       </div>

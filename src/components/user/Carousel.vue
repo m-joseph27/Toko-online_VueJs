@@ -7,13 +7,13 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="../assets/img/logo.png" class="d-block w-100" alt="sd-jual">
+          <img src="../../assets/img/logo.png" class="d-block w-100" alt="sd-jual">
         </div>
         <div class="carousel-item">
-          <img src="../assets/img/dvd_merryriana.jpg" class="d-block w-100" alt="dvd">
+          <img src="../../assets/img/dvd_merryriana.jpg" class="d-block w-100" alt="dvd">
         </div>
         <div class="carousel-item">
-          <img src="../assets/img/mcookies-all.jpeg" class="d-block w-100" alt="cookies">
+          <img src="../../assets/img/mcookies-all.jpeg" class="d-block w-100" alt="cookies">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators"

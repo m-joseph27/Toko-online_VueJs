@@ -12,10 +12,10 @@
 
 <script>
 
-import Navbar from '../components/Navbar.vue';
-import Carousel from '../components/Carousel.vue';
-import Product from '../components/Product.vue';
-import Login from '../components/Login.vue';
+import Navbar from '../components/user/Navbar.vue';
+import Carousel from '../components/user/Carousel.vue';
+import Product from '../components/user/Product.vue';
+import Login from '../components/user/Login.vue';
 
 export default {
   name: 'Home',
