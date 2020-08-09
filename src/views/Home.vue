@@ -74,7 +74,6 @@ export default {
   margin-bottom: 100px;
   background-color: #af2d1a;
   color: white;
-  // box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.20);
 }
 
 </style>

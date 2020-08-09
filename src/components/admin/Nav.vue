@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <img src="../../assets/img/logo-mr.png" width="90px" height="70px" alt="logo">
+    <router-link to="/">
+      <img src="../../assets/img/logo-mr.png" width="90px" height="70px" alt="logo">
+    </router-link>
     <button class="navbar-toggler" type="button"
       data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +30,9 @@ export default {
   background-color: #af2d1a;
   height: 80px;
   padding-left: 50px;
+  img{
+    cursor: pointer;
+  }
 }
 .navbar-collapse{
   justify-content: flex-end;

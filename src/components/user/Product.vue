@@ -16,6 +16,86 @@
         <button class="btn-price">Rp. 150.000</button>
       </div>
     </div>
+    <div class="cardWrapper">
+      <router-link to="/detail-product">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
+      <div class="product">
+        <p>DVD - Mimpi 1 Juta Dolar</p>
+      </div>
+      <div class="price">
+        <button class="btn-buy">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
+          Add To Cart</button>
+        <button class="btn-price">Rp. 150.000</button>
+      </div>
+    </div>
+    <div class="cardWrapper">
+      <router-link to="/detail-product">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
+      <div class="product">
+        <p>DVD - Mimpi 1 Juta Dolar</p>
+      </div>
+      <div class="price">
+        <button class="btn-buy">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
+          Add To Cart</button>
+        <button class="btn-price">Rp. 150.000</button>
+      </div>
+    </div>
+    <div class="cardWrapper">
+      <router-link to="/detail-product">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
+      <div class="product">
+        <p>DVD - Mimpi 1 Juta Dolar</p>
+      </div>
+      <div class="price">
+        <button class="btn-buy">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
+          Add To Cart</button>
+        <button class="btn-price">Rp. 150.000</button>
+      </div>
+    </div>
+    <div class="cardWrapper">
+      <router-link to="/detail-product">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
+      <div class="product">
+        <p>DVD - Mimpi 1 Juta Dolar</p>
+      </div>
+      <div class="price">
+        <button class="btn-buy">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
+          Add To Cart</button>
+        <button class="btn-price">Rp. 150.000</button>
+      </div>
+    </div>
+    <div class="cardWrapper">
+      <router-link to="/detail-product">
+        <div class="img-product">
+          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+        </div>
+      </router-link>
+      <div class="product">
+        <p>DVD - Mimpi 1 Juta Dolar</p>
+      </div>
+      <div class="price">
+        <button class="btn-buy">
+          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
+          Add To Cart</button>
+        <button class="btn-price">Rp. 150.000</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,16 +107,17 @@ export default {
 
 <style lang="scss" scoped>
 .productWrapper{
-  width: 100%;
+  width: 80%;
   height: 700px;
-  margin-top: 180px;
-  padding-top: 50px;
+  margin: 200px auto;
+  display: flex;
+  flex-wrap: wrap;
   .cardWrapper{
     width: 350px;
     height: 350px;
     background-color: #fff;
     box-shadow: 1px 5px 5px 5px rgba(128, 128, 128, 0.342);
-    margin: 0 auto;
+    margin: 20px auto;
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
