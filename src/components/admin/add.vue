@@ -8,20 +8,52 @@
       <span>Description</span>
     </div>
     <div class="inputProduct">
-      <div class="nameProduct"><input type="text"></div>
-      <div class="priceProduct"><input type="text"></div>
-      <div class="photoProduct"><input type="file"></div>
-      <div class="descProduct"><textarea name="" id="" cols="70" rows="5"></textarea></div>
-    </div>
-    <div class="btnSubmit">
-      <button>Sumbit</button>
+      <form @submit="addProduct">
+        <div class="nameProduct">
+          <input type="text" v-model="productName">
+        </div>
+        <div class="priceProduct">
+          <input type="text" v-model="priceProduct">
+        </div>
+        <div class="photoProduct">
+          <input type="file" ref="file">
+        </div>
+        <div class="descProduct">
+          <textarea name="" id="" cols="70" rows="5" v-model="descProduct"></textarea>
+        </div>
+        <div class="btnSubmit">
+          <button type="submit">Sumbit</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'add',
+  data() {
+    return {
+      productName: '',
+      priceProduct: '',
+      productPhoto: '',
+      descProduct: '',
+    };
+  },
+  methods: {
+    addProduct(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('nm_product', this.productName);
+      formData.append('price', this.priceProduct);
+      formData.append('photo', this.$refs.file.files[0]);
+      formData.append('description', this.descProduct);
+      this.$store.dispatch('ADDPRODUCT', formData)
+        .then(() => {
+          this.$router.go('/admin');
+        });
+    },
+  },
 };
 </script>
 
@@ -29,6 +61,7 @@ export default {
 
   .addWrapperActive{
     display: flex !important;
+    transition: ease .5s !important;
   }
 
   .addWrapper{
@@ -43,6 +76,7 @@ export default {
     overflow: hidden;
     padding-top: 30px;
     display: none;
+    transition: ease .5s !important;
     .btnClose{
       width: 70px;
       height: 50px;

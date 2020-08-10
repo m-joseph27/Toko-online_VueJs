@@ -31,6 +31,7 @@ export default {
 <style lang="scss" scoped>
   .listUserWrapper.listUserActive{
     display: flex !important;
+    transition: .5s;
   }
 
   .listUserWrapper{
@@ -41,10 +42,11 @@ export default {
     border-radius: 5px;
     position: absolute;
     top: 170px;
-    left: 35%;
+    left: 40%;
     flex-direction: column;
     overflow-y: scroll;
     display: none;
+    transition: .5s;
     .listUser{
       width: 100%;
       height: 100px;

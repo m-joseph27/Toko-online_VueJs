@@ -11,7 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <div class="search">
-          <input type="text">
+          <input type="text" placeholder="search">
+          <div class="searchBox">
+            <i class="fas fa-search"></i>
+          </div>
         </div>
         <router-link class="nav-link active" to="/">Beranda
           <span class="sr-only">(current)</span>
@@ -58,8 +61,6 @@ export default {
   }
 }
 .navbar-collapse{
-  // display: flex;
-  // background-color: #af2d1a;
   justify-content: flex-end;
   align-items: center;
   margin-right: 50px;
@@ -67,6 +68,7 @@ export default {
   box-sizing: border-box;
   .search{
     margin: 6px 260px;
+    position: relative;
     input{
       width: 450px;
       height: 40px;
@@ -74,6 +76,23 @@ export default {
       outline: none;
       padding-left: 10px;
       border: 1px solid rgba(0, 0, 0, 0.20);
+      position: relative;
+      padding-left: 60px;
+      &:focus{
+        border:1px solid #af2d1a;
+      }
+    }
+    .searchBox{
+      width: 50px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      padding-top: 10px;
+      border-right: 1px solid rgba(0, 0, 0, 0.20);
+      i{
+      opacity: .8;
+      font-size: 20px;
+    }
     }
   }
   .btn-parent{

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     product: [],
     user: [],
     order: [],
+    message: '',
   },
   mutations: {
     PRODUCT(state, data) {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     ORDER(state, data) {
       state.order = data;
+    },
+    MSG(state, data) {
+      state.message = data;
     },
   },
   actions: {
@@ -40,9 +44,22 @@ export default new Vuex.Store({
       axios
         .get(`${process.env.VUE_APP_URL}order`)
         .then((res) => {
-          console.log(res.data.data);
           context.commit('ORDER', res.data.data);
         });
+    },
+    ADDPRODUCT(context, data) {
+      // eslint-disable-next-line no-unused-vars
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${process.env.VUE_APP_URL}product/insert`, data)
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((error) => {
+            console.log(error);
+            context.commit('MSG', error.response.data.err);
+          });
+      });
     },
   },
 

@@ -33,15 +33,21 @@ export default {
   methods: {
     modalAdd() {
       document.querySelector('.addWrapper').classList.add('addWrapperActive');
+      document.querySelector('.listUserWrapper').classList.remove('listUserActive');
+      document.querySelector('.listOrderWrapper').classList.remove('listOrderActive');
     },
     closeAdd() {
       document.querySelector('.addWrapper').classList.remove('addWrapperActive');
     },
     modalListUser() {
       document.querySelector('.listUserWrapper').classList.toggle('listUserActive');
+      document.querySelector('.listOrderWrapper').classList.remove('listOrderActive');
+      document.querySelector('.addWrapper').classList.remove('addWrapperActive');
     },
     modalListOrder() {
       document.querySelector('.listOrderWrapper').classList.toggle('listOrderActive');
+      document.querySelector('.listUserWrapper').classList.remove('listUserActive');
+      document.querySelector('.addWrapper').classList.remove('addWrapperActive');
     },
   },
 };

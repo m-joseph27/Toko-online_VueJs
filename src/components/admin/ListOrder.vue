@@ -16,8 +16,12 @@
           <span>{{ order.price }}</span>
         </div>
         <div class="orderer">
-          <p>Pembeli Produk:</p>
+          <p>Pembeli Produk :</p>
           <span>{{ order.nm_user }}</span>
+        </div>
+        <div class="idUser">
+          <p>ID User :</p>
+          <span>{{ order.id_user }}</span>
         </div>
       </div>
     </div>
@@ -41,6 +45,7 @@ export default {
 <style lang="scss" scoped>
   .listOrderWrapper.listOrderActive{
     display: flex !important;
+    transition: ease .5s;
   }
 
   .listOrderWrapper{
@@ -55,9 +60,10 @@ export default {
     overflow-y: scroll;
     display: none;
     flex-direction: column;
+    transition: ease .5s;
     .listOrder{
       width: 100%;
-      height: 120px;
+      height: 155px;
       display: flex;
       border-bottom: 1px solid rgba(0, 0, 0, 0.164);
       &:hover{
@@ -88,6 +94,7 @@ export default {
         flex-direction: column;
         text-align: left;
         padding-left: 20px;
+        padding-top: 5px;
         span{
           padding-left: 50px;
         }
@@ -102,6 +109,16 @@ export default {
         .orderer{
           width: 100%;
           display: flex;
+          span{
+            padding-left: 38px;
+          }
+        }
+        .idUser{
+          width: 100%;
+          display: flex;
+          span{
+            padding-left: 95px;
+          }
         }
       }
     }
