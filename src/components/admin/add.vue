@@ -1,6 +1,6 @@
 <template>
   <div class="addWrapper">
-    <div class="btnClose"><i class="fas fa-times"></i></div>
+    <div @click="$emit('add-clicked')" class="btnClose"><i class="fas fa-times"></i></div>
     <div class="valueProduct">
       <span>Nama Produk</span>
       <span>Price</span>
@@ -27,6 +27,10 @@ export default {
 
 <style lang="scss" scoped>
 
+  .addWrapperActive{
+    display: flex !important;
+  }
+
   .addWrapper{
     width: 700px;
     height: 550px;
@@ -37,8 +41,8 @@ export default {
     border-radius: 5px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.123);
     overflow: hidden;
-    display: flex;
     padding-top: 30px;
+    display: none;
     .btnClose{
       width: 70px;
       height: 50px;

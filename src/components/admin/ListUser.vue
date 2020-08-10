@@ -1,14 +1,14 @@
 <template>
   <div class="listUserWrapper">
-    <div class="listUser">
+    <div v-for="user in getUser" :key="user.id_user" class="listUser">
       <div class="photoUser">
         <div class="avatar">
-          <img src="../../assets/img/user.png" alt="user">
+          <img :src="user.photo" alt="user">
         </div>
       </div>
       <div class="detailUser">
-        <h5>Muhammad Yusuf</h5>
-        <h6>hi.yusuf27@gmail.com</h6>
+        <h5>{{ user.nm_user }}</h5>
+        <h6>{{ user.email }}</h6>
       </div>
     </div>
   </div>
@@ -16,14 +16,21 @@
 
 <script>
 export default {
-
+  name: 'listUser',
+  mounted() {
+    this.$store.dispatch('GETUSER');
+  },
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
   .listUserWrapper.listUserActive{
-    visibility: visible;
-    opacity: 1;
+    display: flex !important;
   }
 
   .listUserWrapper{
@@ -35,11 +42,9 @@ export default {
     position: absolute;
     top: 170px;
     left: 35%;
-    display: flex;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
+    flex-direction: column;
     overflow-y: scroll;
+    display: none;
     .listUser{
       width: 100%;
       height: 100px;
@@ -59,6 +64,7 @@ export default {
           height: 80px;
           border-radius: 100%;
           background-color: rgba(0, 0, 0, 0.151);
+          overflow: hidden;
           img{
             object-fit: cover;
             width: 100%;
@@ -71,7 +77,8 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        padding-left: 20px;
       }
     }
   }

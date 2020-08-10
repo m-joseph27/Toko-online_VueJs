@@ -1,13 +1,13 @@
 <template>
   <div class="infoWrapper">
     <div class="detailInfo">
-      <div class="addProduct">
+      <div @click="$emit('add')" class="addProduct">
         <p>Add Product</p>
       </div>
-      <div class="listOrder">
+      <div @click="$emit('order')" class="listOrder">
         <p>List Order</p>
       </div>
-      <div class="listUser" @click="$('user-clicked')">
+      <div @click="$emit('list')" class="listUser">
         <p>List User</p>
       </div>
     </div>

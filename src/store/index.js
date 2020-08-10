@@ -7,10 +7,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     product: [],
+    user: [],
+    order: [],
   },
   mutations: {
     PRODUCT(state, data) {
       state.product = data;
+    },
+    USER(state, data) {
+      state.user = data;
+    },
+    ORDER(state, data) {
+      state.order = data;
     },
   },
   actions: {
@@ -21,7 +29,23 @@ export default new Vuex.Store({
           context.commit('PRODUCT', res.data.data);
         });
     },
+    GETUSER(context) {
+      axios
+        .get(`${process.env.VUE_APP_URL}user`)
+        .then((res) => {
+          context.commit('USER', res.data.data);
+        });
+    },
+    GETORDER(context) {
+      axios
+        .get(`${process.env.VUE_APP_URL}order`)
+        .then((res) => {
+          console.log(res.data.data);
+          context.commit('ORDER', res.data.data);
+        });
+    },
   },
+
   modules: {
   },
 });

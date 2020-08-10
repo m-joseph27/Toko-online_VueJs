@@ -13,7 +13,6 @@
   <register @close-register="closeRegister"/>
   <ModalUser/>
   <login-admin @close-admin="closeLoginAdmin"/>
-  <Footer/>
   </div>
 </template>
 
@@ -24,7 +23,6 @@ import Carousel from '../components/user/Carousel.vue';
 import Product from '../components/user/Product.vue';
 import Login from '../components/user/Login.vue';
 import Register from '../components/user/Register.vue';
-import Footer from '../components/Footer.vue';
 import ModalUser from '../components/user/ModalUser.vue';
 import LoginAdmin from '../components/admin/Login.vue';
 
@@ -36,7 +34,6 @@ export default {
     Product,
     Login,
     Register,
-    Footer,
     ModalUser,
     LoginAdmin,
   },

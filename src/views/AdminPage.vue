@@ -1,10 +1,12 @@
 <template>
   <div class="admin">
     <Nav/>
-    <info @user-clicked="showListUser"/>
-    <list-user/>
+    <info v-on:add="modalAdd"
+          v-on:list="modalListUser"
+          v-on:order="modalListOrder"/>
     <list-order/>
-    <add/>
+    <list-user/>
+    <add @add-clicked="closeAdd"/>
     <Footer/>
   </div>
 </template>
@@ -14,8 +16,8 @@
 import Nav from '../components/admin/Nav.vue';
 import Footer from '../components/Footer.vue';
 import Info from '../components/admin/Info.vue';
-import ListUser from '../components/admin/ListUser.vue';
 import ListOrder from '../components/admin/ListOrder.vue';
+import ListUser from '../components/admin/ListUser.vue';
 import Add from '../components/admin/add.vue';
 
 export default {
@@ -24,27 +26,27 @@ export default {
     Nav,
     Footer,
     Info,
-    ListUser,
     ListOrder,
+    ListUser,
     Add,
   },
   methods: {
-    showListUser() {
+    modalAdd() {
+      document.querySelector('.addWrapper').classList.add('addWrapperActive');
+    },
+    closeAdd() {
+      document.querySelector('.addWrapper').classList.remove('addWrapperActive');
+    },
+    modalListUser() {
       document.querySelector('.listUserWrapper').classList.toggle('listUserActive');
+    },
+    modalListOrder() {
+      document.querySelector('.listOrderWrapper').classList.toggle('listOrderActive');
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-// .List{
-//   position: absolute;
-//   width: 100%;
-//   top: 710px;
-//   margin-bottom: 100px;
-//   background-color: #af2d1a;
-//   color: rgb(148, 50, 50);
-//   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.20);
-// }
 
 </style>

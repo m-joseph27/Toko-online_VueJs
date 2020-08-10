@@ -7,7 +7,7 @@
         </div>
       </router-link>
       <div class="product">
-        <p>{{product.nm_product}}</p>
+        <p>{{ product.nm_product }}</p>
       </div>
       <div class="price">
         <button class="btn-buy">
@@ -16,21 +16,6 @@
         <button class="btn-price">{{product.price}}</button>
       </div>
     </div>
-    <div class="page-controler">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-          <a class="page-link" style="cursor:pointer" @click="prevPages">Previous</a>
-          </li>
-          <li class="page-item" v-for="pagination in totalPage" :key="pagination">
-            <a class="page-link" style="cursor:pointer"
-            @click="pages(pagination)"  >{{pagination}}</a></li>
-          <li class="page-item next">
-          <a class="page-link" style="cursor:pointer" @click="nextPages">Next</a>
-          </li>
-        </ul>
-      </nav>
-  </div>
   </div>
 </template>
 

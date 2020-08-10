@@ -1,14 +1,24 @@
 <template>
   <div class="listOrderWrapper">
-    <div class="listOrder">
-      <div class="productPhoto">
-        <div class="photo">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="product">
+    <div v-for="order in getOrder" :key="order.id_order" class="listOrder">
+      <div class="photoOrder">
+        <div class="avatar">
+          <img :src="order.photo" alt="user">
         </div>
       </div>
-      <div class="detailProduct">
-        <h5>DVD - Mimpi 1 Juta Dolar</h5>
-        <p>Total: <span>2</span></p>
+      <div class="detailOrder">
+        <div class="productName">
+          <p>Nama Produk :</p>
+          <span>{{ order.nm_product }}</span>
+        </div>
+        <div class="priceProduct">
+          <p>Harga Produk :</p>
+          <span>{{ order.price }}</span>
+        </div>
+        <div class="orderer">
+          <p>Pembeli Produk:</p>
+          <span>{{ order.nm_user }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -16,58 +26,83 @@
 
 <script>
 export default {
-
+  name: 'listOrder',
+  mounted() {
+    this.$store.dispatch('GETORDER');
+  },
+  computed: {
+    getOrder() {
+      return this.$store.state.order;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+  .listOrderWrapper.listOrderActive{
+    display: flex !important;
+  }
 
   .listOrderWrapper{
-    width: 350px;
+    width: 800px;
     height: 500px;
     background-color: #fff;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.200);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.100);
     border-radius: 5px;
-    overflow: hidden;
     position: absolute;
-    visibility: hidden;
-    top: 160px;
-    left: 40%;
+    top: 170px;
+    left: 25%;
     overflow-y: scroll;
+    display: none;
+    flex-direction: column;
     .listOrder{
       width: 100%;
-      height: 90px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+      height: 120px;
       display: flex;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.164);
       &:hover{
         background-color: rgba(0, 0, 0, 0.100);
       }
-      .productPhoto{
-        width: 30%;
+      .photoOrder{
+        width: 20%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        .photo{
+        .avatar{
           width: 80px;
           height: 80px;
           border-radius: 100%;
-          background-color: rgba(0, 0, 0, 0.671);
+          background-color: rgba(0, 0, 0, 0.151);
           overflow: hidden;
           img{
-            object-fit: contain;
+            object-fit: cover;
             width: 100%;
             height: 100%;
           }
         }
       }
-      .detailProduct{
-        width: 70%;
+      .detailOrder{
+        width: 80%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 20px;
+        text-align: left;
+        padding-left: 20px;
+        span{
+          padding-left: 50px;
+        }
+        .productName{
+          width: 100%;
+          display: flex;
+        }
+        .priceProduct{
+          width: 100%;
+          display: flex;
+        }
+        .orderer{
+          width: 100%;
+          display: flex;
+        }
       }
     }
   }
