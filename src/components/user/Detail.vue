@@ -1,30 +1,23 @@
+/* eslint-disable prefer-destructuring */
 <template>
   <div class="detailWrapper">
-  <navbar/>
+  <navbar @login-clicked="showLogin"
+          @register-clicked="showRegister"/>
+  <login @close-login="closeLogin"/>
+  <register @close-register="closeRegister"/>
   <div class="detailProduct">
     <div class="imageProduct">
-      <img src="../../assets/img/dvd_merryriana.jpg" alt="">
+      <img :src="details.photo" alt="">
     </div>
     <div class="description">
       <div class="productName">
-        <h3>DVD - Mimpi 1 Juta Dolar</h3>
+        <h3>{{details.nm_product}}</h3>
       </div>
       <div class="productPrice">
-        <h5>Rp. 150.000</h5>
+        <h5>{{details.price}}</h5>
       </div>
       <div class="productDescription">
-        <p>Bagaimana seorang mahasiswi berkantong pas-pasan bahkan memiliki
-          hutang 40.000 dolar akhirnya bisa sukses meraih pendapatan 1 juta dolar
-          pertamanya di usia 26 tahun? Semua diceritakan lengkap dan bisa kamu tonton
-          di DVD Film Merry Riana.<br><br>
-          Film Merry Riana ini WAJIB ditonton oleh orang yang sedang/pernah menjadi
-          mahasiswa/i, perantau, atau siapapun yang ingin menjadi sukses!
-          Kalau kamu sudah nonton filmnya, biar makin lengkap harus punya juga nih kaosnya.
-          Desainnya simpel, casual, dan cocok untuk kamu yang berjiwa muda.<br><br>
-          Bisa beli salah satunya (kaos/DVD), bisa juga beli paket bundling untuk
-          mendapatkan harga spesial.<br><br>
-          Tertarik?<br>
-          Silakan Pesan :)
+        <p>{{details.description}}
         </p>
       </div>
       <div class="btnCart">
@@ -33,21 +26,51 @@
       </div>
     </div>
   </div>
-  <BtnBack/>
   <Footer/>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import Navbar from './Navbar.vue';
 import Footer from '../Footer.vue';
-import BtnBack from '../BtnBack.vue';
+import Login from './Login.vue';
+import Register from './Register.vue';
 
 export default {
+  data() {
+    return {
+      details: '',
+    };
+  },
   components: {
     Navbar,
     Footer,
-    BtnBack,
+    Login,
+    Register,
+  },
+  methods: {
+    showLogin() {
+      document.querySelector('.loginWrapper').classList.add('loginActive');
+    },
+    closeLogin() {
+      document.querySelector('.loginWrapper').classList.remove('loginActive');
+    },
+    showRegister() {
+      document.querySelector('.registerWrapper').classList.add('registerActive');
+    },
+    closeRegister() {
+      document.querySelector('.registerWrapper').classList.remove('registerActive');
+    },
+  },
+
+  mounted() {
+    axios
+      .get(`http://localhost:1111/api/product/${this.$route.params.id}`)
+      .then((res) => {
+        // eslint-disable-next-line prefer-destructuring
+        this.details = res.data.data[0];
+      });
   },
 
 };
@@ -62,7 +85,7 @@ export default {
       width: 95%;
       height: 700px;
       display: flex;
-      margin-top: 100px;
+      margin-top: 90px;
       margin-bottom: 20px;
       text-align: left;
       background-color: rgb(255, 255, 255);
@@ -82,7 +105,7 @@ export default {
         height: 100%;
         display: flex;
         flex-direction: column;
-        margin-top: 90px;
+        margin-top: 70px;
         .productName{
           width: 100%;
           height: 50px;
@@ -95,6 +118,7 @@ export default {
           width: 100%;
           height: 300px;
           padding-right: 30px;
+          overflow: hidden;
         }
         .btnCart{
           width: 140px;

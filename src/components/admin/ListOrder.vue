@@ -33,6 +33,7 @@ export default {
     visibility: hidden;
     top: 160px;
     left: 40%;
+    overflow-y: scroll;
     .listOrder{
       width: 100%;
       height: 90px;

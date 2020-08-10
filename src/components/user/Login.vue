@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-useless-return */
 <template>
   <div class="loginWrapper">
     <div class="bodyLogin">
@@ -8,13 +10,12 @@
         </div>
       </div>
       <div class="formLogin">
-        <form action="/">
-          <label for="fname">Email:</label><br>
-          <input type="email" id="fname" placeholder="example@gmail.com"><br><br>
-          <label for="lname">Password:</label><br>
-          <input type="password" id="lname"><br><br><br>
-          <input class="submit" type="submit" value="Submit">
-        </form>
+        <label for="login">Email:</label><br>
+        <input type="email" id="login"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password"><br><br><br>
+        <button @click="login">login</button>
+        <div v-if="error !== false" class="login-message">{{error}}</div>
       </div>
       <div class="btnLogin">
         <p>Belum punya akun? <span>Daftar </span></p>
@@ -24,12 +25,63 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: false,
+    };
+  },
+  methods: {
+    login(e) {
+      e.preventDefault();
+      axios
+        .post(`${process.env.VUE_APP_URL}user/login`, {
+          email: this.email,
+          password: this.password,
+        })
+        .then((req) => {
+          this.loginSucces(req);
+        });
+      this.$router.push('/');
+    },
+    loginSucces(request) {
+      if (request.status === 404) {
+        this.failEmail();
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+      if (request.status === 401) {
+        this.failPassword();
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+    },
+    failEmail() {
+      this.error = 'Incorrect Email';
+    },
+    failPassword() {
+      this.error = 'Incorrect Password';
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+  .login-message{
+    // margin-top: 80px;
+    // padding-left: 137px;
+    // padding-top: 3px;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(236, 10, 10);
+    // font-family: airbnbmedium;
+    color: white;
+  }
   .loginWrapper.loginActive{
     visibility: visible;
     opacity: 1;
@@ -81,6 +133,16 @@ export default {
       .formLogin{
         width: 100%;
         height: 300px;
+        button{
+          width: 80%;
+          height: 40px;
+          outline: none;
+          border: none;
+          background-color: #af2d1a;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+        }
         label{
           font-size: 15px;
           font-weight: 700;

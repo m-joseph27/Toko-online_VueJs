@@ -1,107 +1,97 @@
 <template>
   <div class="productWrapper">
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
+    <div v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
+      <router-link :to="/detail-product/+product.id_product">
         <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+          <img :src="product.photo" alt="dvd">
         </div>
       </router-link>
       <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
+        <p>{{product.nm_product}}</p>
       </div>
       <div class="price">
         <button class="btn-buy">
           <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
+        <button class="btn-price">{{product.price}}</button>
       </div>
     </div>
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
-        <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-        </div>
-      </router-link>
-      <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
-      </div>
-      <div class="price">
-        <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
-          Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
-      </div>
-    </div>
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
-        <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-        </div>
-      </router-link>
-      <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
-      </div>
-      <div class="price">
-        <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
-          Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
-      </div>
-    </div>
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
-        <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-        </div>
-      </router-link>
-      <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
-      </div>
-      <div class="price">
-        <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
-          Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
-      </div>
-    </div>
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
-        <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-        </div>
-      </router-link>
-      <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
-      </div>
-      <div class="price">
-        <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
-          Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
-      </div>
-    </div>
-    <div class="cardWrapper">
-      <router-link to="/detail-product">
-        <div class="img-product">
-          <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-        </div>
-      </router-link>
-      <div class="product">
-        <p>DVD - Mimpi 1 Juta Dolar</p>
-      </div>
-      <div class="price">
-        <button class="btn-buy">
-          <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
-          Add To Cart</button>
-        <button class="btn-price">Rp. 150.000</button>
-      </div>
-    </div>
+    <div class="page-controler">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+          <a class="page-link" style="cursor:pointer" @click="prevPages">Previous</a>
+          </li>
+          <li class="page-item" v-for="pagination in totalPage" :key="pagination">
+            <a class="page-link" style="cursor:pointer"
+            @click="pages(pagination)"  >{{pagination}}</a></li>
+          <li class="page-item next">
+          <a class="page-link" style="cursor:pointer" @click="nextPages">Next</a>
+          </li>
+        </ul>
+      </nav>
+  </div>
   </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+  name: 'productComponent',
+  mounted() {
+    this.$store.dispatch('GETPRODUCT');
+    axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
+      .then((res) => {
+        // eslint-disable-next-line prefer-destructuring
+        this.product = res.data.result[2];
+        // eslint-disable-next-line prefer-destructuring
+        this.totalPage = res.data.result[0];
+      });
+  },
+  computed: {
+    getProduct() {
+      return this.$store.state.product;
+    },
+  },
+  methods: {
+    pages(id) {
+      this.currentPage = 0 + id;
+      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
+        .then((res) => {
+          // eslint-disable-next-line prefer-destructuring
+          this.product = res.data.result[2];
+        });
+    },
+    nextPages() {
+      if (this.currentPage === this.totalPage) {
+        this.currentPage = this.totalPage;
+      } else {
+        this.currentPage += 1;
+      }
+      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
+        .then((res) => {
+          // eslint-disable-next-line prefer-destructuring
+          this.product = res.data.result[2];
+          // eslint-disable-next-line prefer-destructuring
+          this.totalPage = res.data.result[0];
+        });
+    },
+    prevPages() {
+      if (this.currentPage === 1) {
+        this.currentPage = 1;
+      } else {
+        this.currentPage -= 1;
+      }
+      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
+        .then((res) => {
+          // eslint-disable-next-line prefer-destructuring
+          this.product = res.data.result[2];
+          // eslint-disable-next-line prefer-destructuring
+          this.totalPage = res.data.result[0];
+        });
+    },
+  },
 };
 </script>
 
@@ -151,9 +141,9 @@ export default {
         height: 40px;
         background-color: rgb(255, 255, 255);
         border-radius: 5px;
-        // box-shadow: 1px 5px 5px rgb(71, 71, 71);
         outline: none;
         border: none;
+        font-weight: bold;
         &:active{
           transform: translateY(2px);
         }

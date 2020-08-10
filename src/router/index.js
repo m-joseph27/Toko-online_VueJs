@@ -19,8 +19,8 @@ const routes = [
     component: Admin,
   },
   {
-    path: '/detail-product',
-    name: 'User',
+    path: '/detail-product/:id',
+    name: 'Detail',
     component: Detail,
   },
   {

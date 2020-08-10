@@ -39,6 +39,7 @@ export default {
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
+    overflow-y: scroll;
     .listUser{
       width: 100%;
       height: 100px;

@@ -79,7 +79,7 @@ export default {
   .btn-parent{
     display: flex;
     flex-direction: row;
-    display: none;
+    // display: none;
     button{
       width: 100px;
       margin: 0 10px;
@@ -106,6 +106,7 @@ export default {
     justify-content: center;
     padding-top: 5px;
     position: relative;
+    display: none;
     cursor: pointer;
     .selectedItem{
       background-color: #af2d1a;
@@ -124,6 +125,7 @@ export default {
     background-color: #af2d1a;
     border-radius: 100%;
     margin-left: 10px;
+    display: none;
     cursor: pointer;
     img{
       object-fit: cover;

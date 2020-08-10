@@ -8,15 +8,13 @@
         </div>
       </div>
       <div class="formLogin">
-        <form action="/">
-          <label for="fname">Username:</label><br>
-          <input type="text" id="fname" placeholder="input your username"><br><br>
-          <label for="fname">Email:</label><br>
-          <input type="email" id="fname" placeholder="input your email"><br><br>
-          <label for="lname">Password:</label><br>
-          <input type="password" id="lname"><br><br><br>
-          <input class="submit" type="submit" value="Submit">
-        </form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username"><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email"><br><br>
+        <label for="pass">Password:</label><br>
+        <input type="password" id="pass"><br><br><br>
+        <button>Register</button>
       </div>
       <div class="btnRegister">
         <p>Sudah punya akun? <span @click="$('login-clicked')">Login</span></p>
@@ -87,6 +85,16 @@ export default {
         width: 100%;
         height: 300px;
         margin-bottom: 90px;
+        button{
+          width: 80%;
+          height: 40px;
+          outline: none;
+          border: none;
+          background-color: #af2d1a;
+          border-radius: 5px;
+          color: white;
+          font-weight: bold;
+        }
         label{
           font-size: 15px;
           font-weight: 700;
