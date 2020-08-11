@@ -3,16 +3,14 @@
     <div class="List">
       <h1>Our  product</h1>
     </div>
-  <navbar @login-clicked="showLogin"
-          @register-clicked="showRegister"
-          @modal-clicked="showModal"
-          @admin-clicked="showLoginAdmin"/>
+  <navbar @modal-clicked="showModal"
+          @admin-clicked="showLoginAdmin"
+          @cart-clicked="showCart"/>
   <carousel/>
   <product/>
-  <login @close-login="closeLogin"/>
-  <register @close-register="closeRegister"/>
   <ModalUser/>
   <login-admin @close-admin="closeLoginAdmin"/>
+  <cart/>
   </div>
 </template>
 
@@ -21,10 +19,9 @@
 import Navbar from '../components/user/Navbar.vue';
 import Carousel from '../components/user/Carousel.vue';
 import Product from '../components/user/Product.vue';
-import Login from '../components/user/Login.vue';
-import Register from '../components/user/Register.vue';
 import ModalUser from '../components/user/ModalUser.vue';
 import LoginAdmin from '../components/admin/Login.vue';
+import Cart from '../components/user/Cart.vue';
 
 export default {
   name: 'Home',
@@ -32,23 +29,13 @@ export default {
     Navbar,
     Carousel,
     Product,
-    Login,
-    Register,
     ModalUser,
     LoginAdmin,
+    Cart,
   },
   methods: {
-    showLogin() {
-      document.querySelector('.loginWrapper').classList.add('loginActive');
-    },
-    closeLogin() {
-      document.querySelector('.loginWrapper').classList.remove('loginActive');
-    },
-    showRegister() {
-      document.querySelector('.registerWrapper').classList.add('registerActive');
-    },
-    closeRegister() {
-      document.querySelector('.registerWrapper').classList.remove('registerActive');
+    showCart() {
+      document.querySelector('.cartWrapper').classList.toggle('cartWrapperActive');
     },
     showModal() {
       document.querySelector('.modalWrapper').classList.toggle('modalWrapperActive');

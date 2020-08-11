@@ -1,6 +1,7 @@
 <template>
   <div class="productWrapper">
-    <div v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
+    <div @click="selectedItem(selectedProduct)"
+    v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
       <router-link :to="/detail-product/+product.id_product">
         <div class="img-product">
           <img :src="product.photo" alt="dvd">
@@ -24,6 +25,18 @@ import axios from 'axios';
 
 export default {
   name: 'productComponent',
+  data() {
+    return {
+      selectedProduct: [],
+    };
+  },
+
+  methods: {
+    selectedItem(item) {
+      this.$store.commit('selectedItem', item);
+    },
+  },
+
   mounted() {
     this.$store.dispatch('GETPRODUCT');
     axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
@@ -37,44 +50,6 @@ export default {
   computed: {
     getProduct() {
       return this.$store.state.product;
-    },
-  },
-  methods: {
-    pages(id) {
-      this.currentPage = 0 + id;
-      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
-        .then((res) => {
-          // eslint-disable-next-line prefer-destructuring
-          this.product = res.data.result[2];
-        });
-    },
-    nextPages() {
-      if (this.currentPage === this.totalPage) {
-        this.currentPage = this.totalPage;
-      } else {
-        this.currentPage += 1;
-      }
-      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
-        .then((res) => {
-          // eslint-disable-next-line prefer-destructuring
-          this.product = res.data.result[2];
-          // eslint-disable-next-line prefer-destructuring
-          this.totalPage = res.data.result[0];
-        });
-    },
-    prevPages() {
-      if (this.currentPage === 1) {
-        this.currentPage = 1;
-      } else {
-        this.currentPage -= 1;
-      }
-      axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
-        .then((res) => {
-          // eslint-disable-next-line prefer-destructuring
-          this.product = res.data.result[2];
-          // eslint-disable-next-line prefer-destructuring
-          this.totalPage = res.data.result[0];
-        });
     },
   },
 };

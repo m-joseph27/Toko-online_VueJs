@@ -1,9 +1,7 @@
-/* eslint-disable prefer-destructuring */
 <template>
   <div class="detailWrapper">
   <navbar @login-clicked="showLogin"
           @register-clicked="showRegister"/>
-  <login @close-login="closeLogin"/>
   <register @close-register="closeRegister"/>
   <div class="detailProduct">
     <div class="imageProduct">
@@ -34,7 +32,6 @@
 import axios from 'axios';
 import Navbar from './Navbar.vue';
 import Footer from '../Footer.vue';
-import Login from './Login.vue';
 import Register from './Register.vue';
 
 export default {
@@ -46,7 +43,6 @@ export default {
   components: {
     Navbar,
     Footer,
-    Login,
     Register,
   },
   methods: {

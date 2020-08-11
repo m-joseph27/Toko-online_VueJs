@@ -23,10 +23,14 @@
           >Admin
           </span>
         <div class="btn-parent">
-          <button class="btn-login" @click="$emit('login-clicked')">Login</button>
-          <button class="btn-register" @click="$emit('register-clicked')">Register</button>
+          <router-link to="/login">
+            <button class="btn-login">Login</button>
+          </router-link>
+          <router-link to="/login">
+            <button class="btn-register">Register</button>
+          </router-link>
         </div>
-        <div class="cart">
+        <div @click="$emit('cart-clicked')" class="cart">
           <img src="../../assets/img/shopping-cart-maroon.png" width="30px" height="25px"
           alt="chart-maroon">
           <div class="selectedItem">
@@ -98,7 +102,7 @@ export default {
   .btn-parent{
     display: flex;
     flex-direction: row;
-    // display: none;
+    display: none;
     button{
       width: 100px;
       margin: 0 10px;
@@ -125,7 +129,7 @@ export default {
     justify-content: center;
     padding-top: 5px;
     position: relative;
-    display: none;
+    // display: none;
     cursor: pointer;
     .selectedItem{
       background-color: #af2d1a;
@@ -144,7 +148,7 @@ export default {
     background-color: #af2d1a;
     border-radius: 100%;
     margin-left: 10px;
-    display: none;
+    // display: none;
     cursor: pointer;
     img{
       object-fit: cover;

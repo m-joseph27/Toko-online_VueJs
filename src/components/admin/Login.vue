@@ -8,11 +8,11 @@
         </div>
       </div>
       <div class="formLogin">
-        <form action="/admin">
+        <form @submit="loginAdmin">
           <label for="fname">Email:</label><br>
-          <input type="email" id="fname" placeholder="example@gmail.com"><br><br>
+          <input type="email" id="fname" v-model="emailAdmin"><br><br>
           <label for="lname">Password:</label><br>
-          <input type="password" id="lname"><br><br><br>
+          <input type="password" id="lname" v-model="passwordAdmin"><br><br><br>
           <input class="submit" type="submit" value="Submit">
         </form>
       </div>
@@ -24,8 +24,50 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+  name: 'loginUser',
+  data() {
+    return {
+      emailAdmin: '',
+      passwordAdmin: '',
+      error: '',
+    };
+  },
+
+  methods: {
+    loginAdmin(e) {
+      e.preventDefault();
+      axios
+        .post(`${process.env.VUE_APP_URL}user/login`, {
+          email: this.emailAdmin,
+          password: this.passwordAdmin,
+        })
+        .then((req) => {
+          this.loginSucces(req);
+        });
+      this.$router.push('/admin');
+    },
+    loginSucces(request) {
+      if (request.status === 404) {
+        this.failEmail();
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+      if (request.status === 401) {
+        this.failPassword();
+        // eslint-disable-next-line no-useless-return
+        return;
+      }
+    },
+    failEmail() {
+      this.error = 'Incorrect Email';
+    },
+    failPassword() {
+      this.error = 'Incorrect Password';
+    },
+  },
 };
 </script>
 

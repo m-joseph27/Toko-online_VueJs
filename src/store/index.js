@@ -10,6 +10,8 @@ export default new Vuex.Store({
     user: [],
     order: [],
     message: '',
+    loginUser: [],
+    selectedItem: [],
   },
   mutations: {
     PRODUCT(state, data) {
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     },
     MSG(state, data) {
       state.message = data;
+    },
+    LOGIN(state, data) {
+      state.loginUser = data;
+    },
+    SELECTEDITEM(state, item) {
+      state.selectedItem.push(item);
     },
   },
   actions: {
@@ -60,6 +68,14 @@ export default new Vuex.Store({
             context.commit('MSG', error.response.data.err);
           });
       });
+    },
+    USERLOGIN(context) {
+      axios
+        .post(`${process.env.VUE_APP_URL}user`)
+        .then((res) => {
+          console.log(res.data.data);
+          context.commit('LOGIN', res.data.data);
+        });
     },
   },
 

@@ -7,8 +7,9 @@
         </div>
       </div>
       <div class="detailUser">
-        <h5>{{ user.nm_user }}</h5>
-        <h6>{{ user.email }}</h6>
+        <h6>Nama User :  <span>{{ user.nm_user }}</span></h6>
+        <h6>Emal User: <span>{{ user.email }}</span></h6>
+        <p>ID User :   <span>{{ user.id_user }}</span></p>
       </div>
     </div>
   </div>
@@ -35,14 +36,14 @@ export default {
   }
 
   .listUserWrapper{
-    width: 350px;
+    width: 500px;
     height: 500px;
     background-color: #fff;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.100);
     border-radius: 5px;
     position: absolute;
     top: 170px;
-    left: 40%;
+    left: 33.3%;
     flex-direction: column;
     overflow-y: scroll;
     display: none;
