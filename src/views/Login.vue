@@ -8,9 +8,27 @@
         <h5>Login</h5><br><br><br>
         <form @submit="login">
           <label for="email">Input your email</label><br>
-          <input type="email" id="email" v-model="emailUser"><br><br>
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            :class="$v.email.$error ? 'bg-red-200 placeholder-red-500' : 'bg-white'"
+          />
+          <div v-if="submitted && $v.email.$error" class="text-red-500 font-semibold ml-1">
+            <span v-if="!$v.email.required">Required</span>
+            <span v-if="!$v.email.email">Invalid Email</span>
+          </div><br><br>
           <label for="password">Input your password</label><br>
-          <input type="password" id="password" v-model="passwordUser"><br><br><br><br>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            :class="$v.password.$error ? 'bg-red-200 placeholder-red-500' : 'bg-white'"
+          />
+          <div v-if="submitted && !$v.password.required"
+            class="text-red-500 font-semibold ml-1">
+              Required
+          </div><br><br>
           <button @click="login" >Login</button><br><br>
           <p>Belum punya akun ?
             <router-link to="/register">
@@ -33,8 +51,8 @@ export default {
   name: 'login',
   data() {
     return {
-      emailUser: '',
-      passwordUser: '',
+      email: '',
+      password: '',
       error: false,
       submitted: false,
     };
@@ -56,7 +74,8 @@ export default {
       this.$v.$touch();
       // eslint-disable-next-line no-empty
       if (this.$v.$invalid) {
-
+        // return;
+        // console.log(return)
       } else {
         this.$store.dispatch('isLogin', { email: this.email, password: this.password })
           .then((res) => {
@@ -65,8 +84,8 @@ export default {
             Swal.fire({
               title: 'Login succes',
               icon: 'success',
-              showConfirmButton: false,
-              timer: 2200,
+              showConfirmButton: 'false',
+              timer: 2000,
             });
             this.$router.push('/');
           });
