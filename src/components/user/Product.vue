@@ -1,7 +1,6 @@
 <template>
   <div class="productWrapper">
-    <div @click="selectedItem(selectedProduct)"
-    v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
+    <div v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
       <router-link :to="/detail-product/+product.id_product">
         <div class="img-product">
           <img :src="product.photo" alt="dvd">
@@ -11,7 +10,7 @@
         <p>{{ product.nm_product }}</p>
       </div>
       <div class="price">
-        <button class="btn-buy">
+        <button @click="selectedItem(product)" class="btn-buy">
           <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
         <button class="btn-price">{{product.price}}</button>
@@ -33,7 +32,7 @@ export default {
 
   methods: {
     selectedItem(item) {
-      this.$store.commit('selectedItem', item);
+      this.$store.commit('selectedItem', { item, count: 1 });
     },
   },
 

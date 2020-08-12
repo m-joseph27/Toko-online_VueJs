@@ -6,12 +6,12 @@
       </div>
       <div class="formInput">
         <h5>Login</h5><br><br><br>
-        <form @submit="loginUser">
+        <form @submit="login">
           <label for="email">Input your email</label><br>
           <input type="email" id="email" v-model="emailUser"><br><br>
           <label for="password">Input your password</label><br>
           <input type="password" id="password" v-model="passwordUser"><br><br><br><br>
-          <button>Login</button><br><br>
+          <button @click="login" >Login</button><br><br>
           <p>Belum punya akun ?
             <router-link to="/register">
               <span>Daftar</span>
@@ -25,7 +25,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Swal from 'sweetalert2';
+import { required, email } from 'vuelidate/lib/validators';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -35,6 +36,7 @@ export default {
       emailUser: '',
       passwordUser: '',
       error: false,
+      submitted: false,
     };
   },
 
@@ -42,20 +44,34 @@ export default {
     Footer,
   },
 
-  methods: {
-    loginUser(e) {
-      e.preventDefault();
-      axios
-        .post(`${process.env.VUE_APP_URL}user/login`, {
-          email: this.emailUser,
-          password: this.passwordUser,
-        })
-        .then((req) => {
-          console.log(req);
-          this.loginSucces(req);
-        });
-    },
+  validation: {
+    email: { required, email },
+    password: { required },
+  },
 
+  methods: {
+    login(e) {
+      e.preventDefault();
+      this.submitted = true;
+      this.$v.$touch();
+      // eslint-disable-next-line no-empty
+      if (this.$v.$invalid) {
+
+      } else {
+        this.$store.dispatch('isLogin', { email: this.email, password: this.password })
+          .then((res) => {
+            // eslint-disable-next-line no-unused-expressions
+            res;
+            Swal.fire({
+              title: 'Login succes',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2200,
+            });
+            this.$router.push('/');
+          });
+      }
+    },
   },
 
 };

@@ -23,14 +23,36 @@ export default new Vuex.Store({
     ORDER(state, data) {
       state.order = data;
     },
-    MSG(state, data) {
-      state.message = data;
+    MSG(state, error) {
+      state.message = error;
     },
     LOGIN(state, data) {
       state.loginUser = data;
     },
-    SELECTEDITEM(state, item) {
-      state.selectedItem.push(item);
+    selectedItem(state, { item, count }) {
+      const items = state.selectedItem
+        .find((cliked) => cliked.item.id_product === item.id_product);
+      if (!items) {
+        state.selectedItem.push({ item, count });
+      }
+    },
+    INCREMENT(state, data) {
+      const items = state.selectedItem
+        .find((item) => item.item.id_product === data.item.id_product);
+      if (items) {
+        items.count += 1;
+      }
+    },
+    DECREMENT(state, data) {
+      const items = state.selectedItem
+        .find((item) => item.item.id_product === data.item.id_product);
+      if (items) {
+        if (items.count <= 1) {
+          state.selectedmenu = state.selectedmenu.filter((item) => item !== items);
+        } else {
+          items.count -= 1;
+        }
+      }
     },
   },
   actions: {
@@ -69,13 +91,20 @@ export default new Vuex.Store({
           });
       });
     },
-    USERLOGIN(context) {
-      axios
-        .post(`${process.env.VUE_APP_URL}user`)
-        .then((res) => {
-          console.log(res.data.data);
-          context.commit('LOGIN', res.data.data);
-        });
+    isLogin(context, data) {
+      return new Promise((resolve) => {
+        axios
+          .post(`${process.env.VUE_APP_URL}login`, data)
+          .then((res) => {
+            localStorage.setItem('id_user', res.data.result.id_user);
+            localStorage.setItem('password', res.data.result.password);
+            localStorage.setItem('status', res.data.result.status);
+            resolve(res);
+          })
+          .catch((error) => {
+            context.commit('MSG', error.response.data.err);
+          });
+      });
     },
   },
 

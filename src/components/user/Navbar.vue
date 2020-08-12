@@ -34,7 +34,7 @@
           <img src="../../assets/img/shopping-cart-maroon.png" width="30px" height="25px"
           alt="chart-maroon">
           <div class="selectedItem">
-            <p>0</p>
+            <p>20</p>
           </div>
         </div>
         <div class="user" @click="$emit('modal-clicked')">
@@ -47,7 +47,12 @@
 
 <script>
 export default {
-
+  name: 'navbar',
+  computed: {
+    selectedItem() {
+      return this.$store.state.selectedItem;
+    },
+  },
 };
 
 </script>
@@ -105,6 +110,7 @@ export default {
     display: none;
     button{
       width: 100px;
+      height: 40px;
       margin: 0 10px;
       border: none;
       outline: none;
@@ -133,13 +139,18 @@ export default {
     cursor: pointer;
     .selectedItem{
       background-color: #af2d1a;
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       border-radius: 100%;
       position: absolute;
       top: 0;
-      right: 15px;
-      color: white;
+      right: 5px;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      p{
+        font-size: 13px;
+      }
     }
   }
   .user{

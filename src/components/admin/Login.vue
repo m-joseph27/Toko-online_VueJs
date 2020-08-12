@@ -16,9 +16,6 @@
           <input class="submit" type="submit" value="Submit">
         </form>
       </div>
-      <div class="btnLogin">
-        <p>Belum punya akun? <span>Daftar </span></p>
-      </div>
     </div>
   </div>
 </template>

@@ -1,51 +1,22 @@
 <template>
   <div class="cartWrapper">
     <div class="cartInfo">
-      <div class="contentCart">
+      <div v-for="item in selectedItem" :key="item.item.id_product" class="contentCart">
         <div class="photo">
           <div class="itemPhoto">
-            <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
+            <img :src="item.item.photo" alt="dvd">
           </div>
         </div>
         <div class="cartItem">
-          <p>Dvd Merry</p>
+          <div class="item">
+            <p>{{item.item.nm_product}}</p></div>
           <div class="btnItem">
-            <button>-</button>
-            <div class="box">0</div>
-            <button>+</button>
+            <button @click="decrement(item)">-</button>
+            <input type="text" v-model="item.count" @change="canotnull(item.count)">
+            <button @click="increment(item)">+</button>
+            <p>min. 1 pembelian pcs</p>
           </div>
-          <p>Rp : <span>1500</span></p>
-        </div>
-      </div>
-      <div class="contentCart">
-        <div class="photo">
-          <div class="itemPhoto">
-            <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-          </div>
-        </div>
-        <div class="cartItem">
-          <p>Dvd Merry</p>
-          <div class="btnItem">
-            <button>-</button>
-            <div class="box">0</div>
-            <button>+</button>
-          </div>
-          <p>Rp : <span>1500</span></p>
-        </div>
-      </div>
-      <div class="contentCart">
-        <div class="photo">
-          <div class="itemPhoto">
-            <img src="../../assets/img/dvd_merryriana.jpg" alt="dvd">
-          </div>
-        </div>
-        <div class="cartItem">
-          <p>Dvd Merry</p>
-          <div class="btnItem">
-            <button>-</button>
-            <button>+</button>
-          </div>
-          <p>Rp : <span>1500</span></p>
+          <p>Rp : <span>{{item.item.price * item.count}}</span></p>
         </div>
       </div>
     </div>
@@ -54,7 +25,26 @@
 
 <script>
 export default {
-
+  name: 'cart',
+  computed: {
+    selectedItem() {
+      return this.$store.state.selectedItem;
+    },
+  },
+  methods: {
+    increment(data) {
+      this.$store.commit('INCREMENT', data);
+    },
+    decrement(data) {
+      this.$store.commit('DECREMENT', data);
+    },
+    canotnull(data) {
+      if (data < 1) {
+        // eslint-disable-next-line no-param-reassign
+        data.count = 1;
+      }
+    },
+  },
 };
 </script>
 
@@ -120,21 +110,29 @@ export default {
           flex-direction: column;
           align-items: flex-start;
           line-height: 40px;
+          .item{
+            overflow: hidden;
+          }
           .btnItem{
             display: flex;
+            height: 50px;
+            padding-top: 10px;
+            p{
+              padding-left: 10px;
+              font-weight: 700;
+              font-size: 12px;
+            }
             button{
               width: 40px;
               height: 40px;
               outline: none;
               border: 1px solid rgba(0, 0, 0, 0.200);
             }
-            .box{
-              width: 40px;
+            input{
+              width: 50px;
               height: 40px;
               border: 1px solid #af2d1a;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              padding-left: 10px;
             }
           }
         }
