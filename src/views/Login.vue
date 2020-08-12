@@ -34,6 +34,7 @@
 
 <script>
 import axios from 'axios';
+// import { mapGetters } from 'vuex';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -50,6 +51,12 @@ export default {
     Footer,
   },
 
+  // computed: {
+  //   ...mapGetters([
+  //     'logged',
+  //   ]),
+  // },
+
   methods: {
     login() {
       axios
@@ -57,7 +64,11 @@ export default {
           email: this.email, password: this.password,
         })
         .then((res) => {
-          console.log(res.data.data);
+          localStorage.setItem('id', res.data.data[0].id_user);
+          localStorage.setItem('status', res.data.data[0].status);
+          localStorage.setItem('nama', res.data.data[0].nm_user);
+          localStorage.setItem('photo', res.data.data[0].photo);
+          localStorage.setItem('email', res.data.data[0].email);
         });
       this.$router.push('/');
     },

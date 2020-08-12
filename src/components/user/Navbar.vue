@@ -23,7 +23,7 @@
         <span class="nav-link" @click="$emit('admin-clicked')"
           >Admin
           </span>
-        <div class="btn-parent">
+        <div v-if="!logged"  class="btn-parent">
           <router-link to="/login">
             <button class="btn-login">Login</button>
           </router-link>
@@ -35,7 +35,7 @@
           <img src="../../assets/img/shopping-cart-maroon.png" width="30px" height="25px"
           alt="chart-maroon">
           <div class="selectedItem">
-            <p>20</p>
+            <p>{{ countCart }}</p>
           </div>
         </div>
         <div class="user" @click="$emit('modal-clicked')">
@@ -48,13 +48,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'navbar',
+
   computed: {
     selectedItem() {
       return this.$store.state.selectedItem;
     },
+    ...mapGetters([
+      'logged',
+      'countCart',
+    ]),
   },
+
+  // mounted() {
+  //   ...mapMutations ([
+  //     'setUser'
+  //   ])
+  // },
+
 };
 
 </script>

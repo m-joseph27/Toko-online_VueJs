@@ -13,14 +13,13 @@
         <button @click="selectedItem(product)" class="btn-buy">
           <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
-        <button class="btn-price">{{product.price}}</button>
+        <button class="btn-price">Rp. {{product.price}}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
   name: 'productComponent',
@@ -38,13 +37,6 @@ export default {
 
   mounted() {
     this.$store.dispatch('GETPRODUCT');
-    axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
-      .then((res) => {
-        // eslint-disable-next-line prefer-destructuring
-        this.product = res.data.result[2];
-        // eslint-disable-next-line prefer-destructuring
-        this.totalPage = res.data.result[0];
-      });
   },
   computed: {
     getProduct() {

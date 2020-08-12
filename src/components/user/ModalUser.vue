@@ -1,11 +1,6 @@
 <template>
   <div class="modalWrapper">
-      <div class="userInfo">
-        <router-link to="/user-detail">
-          <p>Profile Saya</p>
-        </router-link>
-      </div>
-    <div class="btnLogout">
+    <div @click="logout" class="btnLogout">
       <p>Log Out</p>
     </div>
   </div>
@@ -13,6 +8,17 @@
 
 <script>
 export default {
+  name: 'modalUser',
+  methods: {
+    logout() {
+      localStorage.removeItem('id');
+      localStorage.removeItem('nm_user');
+      localStorage.removeItem('status');
+      localStorage.removeItem('photo');
+      localStorage.removeItem('email');
+      this.$router.push('/login');
+    },
+  },
 
 };
 </script>
@@ -25,9 +31,9 @@ export default {
   }
   .modalWrapper{
     width: 150px;
-    height: 100px;
+    // height: 100px;
     position: fixed;
-    top: 80px;
+    top: 70px;
     right: 50px;
     z-index: 20;
     background-color: rgb(255, 255, 255);

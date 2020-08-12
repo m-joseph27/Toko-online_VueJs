@@ -1,9 +1,8 @@
 <template>
   <div class="detailWrapper">
-  <navbar @login-clicked="showLogin"
-          @register-clicked="showRegister"/>
-  <register @close-register="closeRegister"/>
-  <div class="detailProduct">
+  <navbar @cart-clicked="showCart"
+          @modal-clicked="showModal"/>
+  <div v-for="product in getProduct" :key="product.id_product" class="detailProduct">
     <div class="imageProduct">
       <img :src="details.photo" alt="">
     </div>
@@ -18,13 +17,15 @@
         <p>{{details.description}}
         </p>
       </div>
-      <div class="btnCart">
+      <div @click="selectedItem(product)" class="btnCart">
         <img src="../../assets/img/shopping-cart.png" width="25px" height="20px" alt="cart">
         <p>Add To Cart</p>
       </div>
     </div>
   </div>
+  <cart/>
   <Footer/>
+  <modal-user/>
   </div>
 </template>
 
@@ -32,31 +33,32 @@
 import axios from 'axios';
 import Navbar from './Navbar.vue';
 import Footer from '../Footer.vue';
-import Register from './Register.vue';
+import Cart from './Cart.vue';
+import ModalUser from './ModalUser.vue';
 
 export default {
+  name: 'detail',
   data() {
     return {
       details: '',
+      selectedProduct: [],
     };
   },
   components: {
     Navbar,
     Footer,
-    Register,
+    Cart,
+    ModalUser,
   },
   methods: {
-    showLogin() {
-      document.querySelector('.loginWrapper').classList.add('loginActive');
+    showCart() {
+      document.querySelector('.cartWrapper').classList.toggle('cartWrapperActive');
     },
-    closeLogin() {
-      document.querySelector('.loginWrapper').classList.remove('loginActive');
+    showModal() {
+      document.querySelector('.modalWrapper').classList.toggle('modalWrapperActive');
     },
-    showRegister() {
-      document.querySelector('.registerWrapper').classList.add('registerActive');
-    },
-    closeRegister() {
-      document.querySelector('.registerWrapper').classList.remove('registerActive');
+    selectedItem(item) {
+      this.$store.commit('selectedItem', { item, count: 1 });
     },
   },
 
@@ -67,6 +69,19 @@ export default {
         // eslint-disable-next-line prefer-destructuring
         this.details = res.data.data[0];
       });
+    this.$store.dispatch('GETPRODUCT');
+    axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
+      .then((res) => {
+        // eslint-disable-next-line prefer-destructuring
+        this.product = res.data.result[2];
+        // eslint-disable-next-line prefer-destructuring
+        this.totalPage = res.data.result[0];
+      });
+  },
+  computed: {
+    getProduct() {
+      return this.$store.state.product;
+    },
   },
 
 };

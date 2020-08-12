@@ -64,14 +64,8 @@ export default {
           nm_user: this.username,
           email: this.email,
           password: this.password,
-        })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
         });
-      this.$router.push('/');
+      this.$router.push('/login');
     },
   },
 

@@ -12,8 +12,12 @@ export default new Vuex.Store({
     message: '',
     loginUser: [],
     selectedItem: [],
+    userId: localStorage.getItem('id') || null,
   },
   mutations: {
+    setUser(state) {
+      state.userId = localStorage.getItem('id');
+    },
     PRODUCT(state, data) {
       state.product = data;
     },
@@ -96,9 +100,11 @@ export default new Vuex.Store({
         axios
           .post(`${process.env.VUE_APP_URL}login`, data)
           .then((res) => {
-            localStorage.setItem('id_user', res.data.result.id_user);
-            localStorage.setItem('password', res.data.result.password);
+            localStorage.setItem('id', res.data.result.id_user);
             localStorage.setItem('status', res.data.result.status);
+            localStorage.setItem('nama', res.data.result.nm_user);
+            localStorage.setItem('photo', res.data.result.photo);
+            localStorage.setItem('email', res.data.result.email);
             resolve(res);
           })
           .catch((error) => {
@@ -109,5 +115,10 @@ export default new Vuex.Store({
   },
 
   modules: {
+  },
+
+  getters: {
+    logged: (state) => (!!state.userId),
+    countCart: (state) => state.selectedItem.length,
   },
 });
