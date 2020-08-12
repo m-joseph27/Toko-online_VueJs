@@ -42,6 +42,9 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        &:active{
+          background-color: rgba(0, 0, 0, 0.100);
+        }
       }
       .listOrder{
         width: 33.34%;
@@ -50,6 +53,9 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        &:active{
+          background-color: rgba(0, 0, 0, 0.100);
+        }
       }
       .listUser{
         width: 33.34%;
@@ -57,6 +63,9 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        &:active{
+          background-color: rgba(0, 0, 0, 0.100);
+        }
       }
     }
   }

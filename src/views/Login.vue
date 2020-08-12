@@ -12,24 +12,14 @@
             type="email"
             id="email"
             v-model="email"
-            :class="$v.email.$error ? 'bg-red-200 placeholder-red-500' : 'bg-white'"
           />
-          <div v-if="submitted && $v.email.$error" class="text-red-500 font-semibold ml-1">
-            <span v-if="!$v.email.required">Required</span>
-            <span v-if="!$v.email.email">Invalid Email</span>
-          </div><br><br>
           <label for="password">Input your password</label><br>
           <input
             type="password"
             id="password"
             v-model="password"
-            :class="$v.password.$error ? 'bg-red-200 placeholder-red-500' : 'bg-white'"
-          />
-          <div v-if="submitted && !$v.password.required"
-            class="text-red-500 font-semibold ml-1">
-              Required
-          </div><br><br>
-          <button @click="login" >Login</button><br><br>
+          /><br><br>
+          <button>Login</button><br><br>
           <p>Belum punya akun ?
             <router-link to="/register">
               <span>Daftar</span>
@@ -43,8 +33,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
-import { required, email } from 'vuelidate/lib/validators';
+import axios from 'axios';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -54,7 +43,6 @@ export default {
       email: '',
       password: '',
       error: false,
-      submitted: false,
     };
   },
 
@@ -62,34 +50,16 @@ export default {
     Footer,
   },
 
-  validation: {
-    email: { required, email },
-    password: { required },
-  },
-
   methods: {
-    login(e) {
-      e.preventDefault();
-      this.submitted = true;
-      this.$v.$touch();
-      // eslint-disable-next-line no-empty
-      if (this.$v.$invalid) {
-        // return;
-        // console.log(return)
-      } else {
-        this.$store.dispatch('isLogin', { email: this.email, password: this.password })
-          .then((res) => {
-            // eslint-disable-next-line no-unused-expressions
-            res;
-            Swal.fire({
-              title: 'Login succes',
-              icon: 'success',
-              showConfirmButton: 'false',
-              timer: 2000,
-            });
-            this.$router.push('/');
-          });
-      }
+    login() {
+      axios
+        .post(`${process.env.VUE_APP_URL}user/login`, {
+          email: this.email, password: this.password,
+        })
+        .then((res) => {
+          console.log(res.data.data);
+        });
+      this.$router.push('/');
     },
   },
 

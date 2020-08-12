@@ -16,7 +16,8 @@
             <i class="fas fa-search"></i>
           </div>
         </div>
-        <router-link class="nav-link active" to="/">Beranda
+        <div class="navigate">
+          <router-link class="nav-link active" to="/">Beranda
           <span class="sr-only">(current)</span>
         </router-link>
         <span class="nav-link" @click="$emit('admin-clicked')"
@@ -41,6 +42,7 @@
           <img src="../../assets/img/user.png" alt="user">
         </div>
       </div>
+        </div>
     </div>
   </nav>
 </template>
@@ -58,6 +60,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .navigate{
+    display: flex;
+    margin-left: -120px;
+  }
+
   .navbar{
   background-color: white;
   width: 100%;
@@ -65,6 +72,7 @@ export default {
   padding-left: 50px;
   position: fixed;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.200);
+  // margin-right: 100px;
   span{
     cursor: pointer;
   }
@@ -107,7 +115,7 @@ export default {
   .btn-parent{
     display: flex;
     flex-direction: row;
-    display: none;
+    // display: none;
     button{
       width: 100px;
       height: 40px;

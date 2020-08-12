@@ -1,10 +1,10 @@
 <template>
   <div class="userWrapper">
     <navbar/>
-    <div class="userDetail">
+    <div v-for="user in getUser" :key="user.iduser" class="userDetail">
       <div class="photoUser">
         <div class="photo">
-          <img src="../assets/img/user.png" alt="user">
+          <img :src="user.photo" alt="user">
         </div>
       </div>
       <div class="detailUser">
@@ -24,6 +24,14 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+  mounted() {
+    this.$store.dispatch('GETUSER');
+  },
+  computed: {
+    getUser() {
+      return this.$store.state.user;
+    },
   },
 
 };

@@ -6,14 +6,26 @@
       </div>
       <div class="formInput">
         <h5>Register</h5><br><br>
-        <form @submit="loginUser">
+        <form @submit="register">
           <label for="user">Nama</label><br>
-          <input type="text" id="user"><br><br>
+          <input
+            type="text"
+            id="user"
+            v-model="username"
+          /><br><br>
           <label for="email">Input your email</label><br>
-          <input type="email" id="email" v-model="emailUser"><br><br>
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            /><br><br>
           <label for="password">Input your password</label><br>
-          <input type="password" id="password" v-model="passwordUser"><br><br><br><br>
-          <button>Register</button><br><br>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            /><br><br><br><br>
+          <button @click="register">Register</button><br><br>
           <p>Sudah punya akun ?
             <router-link to="/login">
               <span>Masuk</span>
@@ -34,8 +46,9 @@ export default {
   name: 'login',
   data() {
     return {
-      emailUser: '',
-      passwordUser: '',
+      username: '',
+      email: '',
+      password: '',
       error: '',
     };
   },
@@ -45,15 +58,18 @@ export default {
   },
 
   methods: {
-    loginUser(e) {
-      e.preventDefault();
+    register() {
       axios
-        .post(`${process.env.VUE_APP_URL}user/login`, {
-          email: this.emailUser,
-          password: this.passwordUser,
+        .post(`${process.env.VUE_APP_URL}user/register`, {
+          nm_user: this.username,
+          email: this.email,
+          password: this.password,
         })
-        .then((req) => {
-          this.loginSucces(req);
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
         });
       this.$router.push('/');
     },
