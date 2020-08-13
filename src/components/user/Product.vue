@@ -13,7 +13,7 @@
         <button @click="selectedItem(product)" class="btn-buy">
           <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
-        <button class="btn-price">Rp. {{product.price}}</button>
+        <div class="btn-price">Rp. {{product.price}}</div>
       </div>
     </div>
   </div>
@@ -61,7 +61,6 @@ export default {
     margin: 20px auto;
     border-radius: 5px;
     overflow: hidden;
-    cursor: pointer;
     .img-product{
       width: 100%;
       height: 65%;
@@ -95,9 +94,19 @@ export default {
         outline: none;
         border: none;
         font-weight: bold;
+        cursor: pointer;
         &:active{
           transform: translateY(2px);
         }
+      }
+      .btn-price{
+        width: 140px;
+        height: 40px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }

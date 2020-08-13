@@ -2,7 +2,7 @@
   <div class="detailWrapper">
   <navbar @cart-clicked="showCart"
           @modal-clicked="showModal"/>
-  <div v-for="product in getProduct" :key="product.id_product" class="detailProduct">
+  <div class="detailProduct">
     <div class="imageProduct">
       <img :src="details.photo" alt="">
     </div>

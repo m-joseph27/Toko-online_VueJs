@@ -12,7 +12,7 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem('id');
-      localStorage.removeItem('nm_user');
+      localStorage.removeItem('nama');
       localStorage.removeItem('status');
       localStorage.removeItem('photo');
       localStorage.removeItem('email');

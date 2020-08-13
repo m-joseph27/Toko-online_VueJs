@@ -31,14 +31,14 @@
             <button class="btn-register">Register</button>
           </router-link>
         </div>
-        <div @click="$emit('cart-clicked')" class="cart">
+        <div v-if="logged" @click="$emit('cart-clicked')" class="cart">
           <img src="../../assets/img/shopping-cart-maroon.png" width="30px" height="25px"
           alt="chart-maroon">
           <div class="selectedItem">
             <p>{{ countCart }}</p>
           </div>
         </div>
-        <div class="user" @click="$emit('modal-clicked')">
+        <div v-if="logged" class="user" @click="$emit('modal-clicked')">
           <img src="../../assets/img/user.png" alt="user">
         </div>
       </div>

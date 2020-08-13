@@ -50,7 +50,7 @@ export default {
       formData.append('description', this.descProduct);
       this.$store.dispatch('ADDPRODUCT', formData)
         .then(() => {
-          this.$router.go('/admin');
+          this.$router.push('/');
         });
     },
   },
