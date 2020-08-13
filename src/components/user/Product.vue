@@ -1,11 +1,9 @@
 <template>
   <div class="productWrapper">
     <div v-for="product in getProduct" :key="product.id_product" class="cardWrapper">
-      <router-link :to="/detail-product/+product.id_product">
         <div class="img-product">
           <img :src="product.photo" alt="dvd">
         </div>
-      </router-link>
       <div class="product">
         <p>{{ product.nm_product }}</p>
       </div>
