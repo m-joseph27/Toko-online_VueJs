@@ -46,24 +46,6 @@ export default {
         });
       this.$router.push('/admin');
     },
-    loginSucces(request) {
-      if (request.status === 404) {
-        this.failEmail();
-        // eslint-disable-next-line no-useless-return
-        return;
-      }
-      if (request.status === 401) {
-        this.failPassword();
-        // eslint-disable-next-line no-useless-return
-        return;
-      }
-    },
-    failEmail() {
-      this.error = 'Incorrect Email';
-    },
-    failPassword() {
-      this.error = 'Incorrect Password';
-    },
   },
 };
 </script>

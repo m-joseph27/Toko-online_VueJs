@@ -52,7 +52,7 @@ export default new Vuex.Store({
         .find((item) => item.item.id_product === data.item.id_product);
       if (items) {
         if (items.count <= 1) {
-          state.selectedmenu = state.selectedmenu.filter((item) => item !== items);
+          state.selectedItem = state.selectedItem.filter((item) => item !== items);
         } else {
           items.count -= 1;
         }

@@ -1,6 +1,10 @@
 <template>
   <div class="cartWrapper">
     <div class="cartInfo">
+      <div v-if="cartEmpty" class="emptyCart">
+        <img src="../../assets/img/emptycart.png" alt="empty-cart">
+        <header>Keranjang Belanjamu Kosong</header>
+      </div>
       <div v-for="item in selectedItem" :key="item.item.id_product" class="contentCart">
         <div class="photo">
           <div class="itemPhoto">
@@ -12,7 +16,7 @@
             <p>{{item.item.nm_product}}</p></div>
           <div class="btnItem">
             <button @click="decrement(item)">-</button>
-            <input type="text" v-model="item.count" @change="canotnull(item.count)">
+            <button>{{ item.count }}</button>
             <button @click="increment(item)">+</button>
             <p>min. 1 pembelian pcs</p>
           </div>
@@ -30,6 +34,9 @@ export default {
     selectedItem() {
       return this.$store.state.selectedItem;
     },
+    cartEmpty() {
+      return this.selectedItem.length === 0;
+    },
   },
   methods: {
     increment(data) {
@@ -37,12 +44,6 @@ export default {
     },
     decrement(data) {
       this.$store.commit('DECREMENT', data);
-    },
-    canotnull(data) {
-      if (data < 1) {
-        // eslint-disable-next-line no-param-reassign
-        data.count = 1;
-      }
     },
   },
 };
@@ -67,15 +68,31 @@ export default {
     transition: ease .5s;
     .cartInfo{
       width: 400px;
-      height: 280px;
+      height: 285px;
       background-color: #fff;
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.200);
       position: absolute;
-      right: 100px;
+      left: 1000px;
       top: -10px;
       border: 1px solid rgba(0, 0, 0, 0.200);
       border-radius: 5px;
       overflow-y: scroll;
+      position: relative;
+      .emptyCart{
+        width: 90%;
+        height: 80%;
+        margin-left: 25px;
+        margin-top: 35px;
+        img{
+          width: 40%;
+          height: 40%;
+          object-fit: contain;
+        }
+        header{
+          font-weight: bold;
+          line-height: 70px;
+        }
+      }
       .contentCart{
         width: 100%;
         height: 140px;

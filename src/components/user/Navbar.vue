@@ -157,7 +157,6 @@ export default {
     justify-content: center;
     padding-top: 5px;
     position: relative;
-    // display: none;
     cursor: pointer;
     .selectedItem{
       background-color: #af2d1a;
@@ -171,7 +170,8 @@ export default {
       display: flex;
       justify-content: center;
       p{
-        font-size: 13px;
+        font-size: 17px;
+        font-weight: bolder;
       }
     }
   }
