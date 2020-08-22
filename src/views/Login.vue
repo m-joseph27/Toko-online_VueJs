@@ -34,7 +34,6 @@
 
 <script>
 import axios from 'axios';
-// import { mapGetters } from 'vuex';
 import Footer from '../components/Footer.vue';
 
 export default {
@@ -50,12 +49,6 @@ export default {
   components: {
     Footer,
   },
-
-  // computed: {
-  //   ...mapGetters([
-  //     'logged',
-  //   ]),
-  // },
 
   methods: {
     login() {

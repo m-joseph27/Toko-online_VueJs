@@ -10,19 +10,25 @@
         <p>{{ product.nm_product }}</p>
       </div>
       <div class="price">
-        <button @click="selectedItem(product)" class="btn-buy">
+        <button v-if="logged" @click="selectedItem(product)" class="btn-buy">
           <img src="../../assets/img/shopping-cart-maroon.png" width="20px" height="20px" alt="">
           Add To Cart</button>
         <div class="btn-price">Rp. {{product.price}}</div>
       </div>
     </div>
+    <modal-login/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import ModalLogin from './ModalLogin.vue';
 
 export default {
   name: 'productComponent',
+  components: {
+    ModalLogin,
+  },
   data() {
     return {
       selectedProduct: [],
@@ -42,6 +48,9 @@ export default {
     getProduct() {
       return this.$store.state.product;
     },
+    ...mapGetters([
+      'logged',
+    ]),
   },
 };
 </script>

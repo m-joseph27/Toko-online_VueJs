@@ -9,7 +9,6 @@
   <carousel/>
   <product/>
   <ModalUser/>
-  <modal-login/>
   <login-admin @close-admin="closeLoginAdmin"/>
   <cart/>
   </div>
@@ -23,7 +22,6 @@ import Product from '../components/user/Product.vue';
 import ModalUser from '../components/user/ModalUser.vue';
 import LoginAdmin from '../components/admin/Login.vue';
 import Cart from '../components/user/Cart.vue';
-import ModalLogin from '../components/user/ModalLogin.vue';
 
 export default {
   name: 'Home',
@@ -34,7 +32,6 @@ export default {
     ModalUser,
     LoginAdmin,
     Cart,
-    ModalLogin,
   },
   methods: {
     showCart() {

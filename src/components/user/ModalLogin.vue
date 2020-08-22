@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!logged" class="modalWrapper">
+  <div class="modalWrapper">
     <div class="modalLogin">
       <p>you must login first <br>or <br> <router-link to="/login">
         <span>click here</span></router-link>
@@ -9,35 +9,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 
 export default {
   name: 'ModalLogin',
-  computed: {
-    ...mapGetters([
-      'logged',
-    ]),
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 
   .modalWrapper{
-    background-color: rgba(0, 0, 0, 0.178);
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
+    z-index: 23;
+    p{
+      font-weight: bold;
+      font-size: 15px;
+    }
     .modalLogin{
-      background-color: #fff;
-      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.178);
-      width: 200px;
-      height: 70px;
+      background-color: white;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.479);
+      border: 1px solid rgba(0, 0, 0, 0.479);
+      width: 300px;
+      height: 200px;
       border-radius: 5px;
       position: absolute;
       top: 50%;
-      left: 45%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 
