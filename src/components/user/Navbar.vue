@@ -63,12 +63,6 @@ export default {
     ]),
   },
 
-  // mounted() {
-  //   ...mapMutations ([
-  //     'setUser'
-  //   ])
-  // },
-
 };
 
 </script>

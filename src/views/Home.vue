@@ -39,12 +39,16 @@ export default {
   methods: {
     showCart() {
       document.querySelector('.cartWrapper').classList.toggle('cartWrapperActive');
+      document.querySelector('.modalWrapper').classList.remove('modalWrapperActive');
     },
     showModal() {
       document.querySelector('.modalWrapper').classList.toggle('modalWrapperActive');
+      document.querySelector('.cartWrapper').classList.remove('cartWrapperActive');
     },
     showLoginAdmin() {
       document.querySelector('.loginAdminWrapper').classList.add('loginAdminActive');
+      document.querySelector('.cartWrapper').classList.remove('cartWrapperActive');
+      document.querySelector('.modalWrapper').classList.remove('modalWrapperActive');
     },
     closeLoginAdmin() {
       document.querySelector('.loginAdminWrapper').classList.remove('loginAdminActive');
