@@ -63,7 +63,7 @@ export default {
     height: 100%;
     position: fixed;
     top: 0;
-    z-index: 20;
+    z-index: 23;
     visibility: hidden;
     transition: ease .5s;
     opacity: 0;
