@@ -16,19 +16,14 @@
         <div class="btn-price">Rp. {{product.price}}</div>
       </div>
     </div>
-    <modal-login/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import ModalLogin from './ModalLogin.vue';
 
 export default {
   name: 'productComponent',
-  components: {
-    ModalLogin,
-  },
   data() {
     return {
       selectedProduct: [],
