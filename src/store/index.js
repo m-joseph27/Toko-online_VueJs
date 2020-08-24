@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+// import { resolve } from 'core-js/fn/promise';
 
 Vue.use(Vuex);
 
@@ -66,6 +67,16 @@ export default new Vuex.Store({
         .then((res) => {
           context.commit('PRODUCT', res.data.data);
         });
+    },
+    GETPRODUCTID(context, id) {
+      // eslint-disable-next-line no-unused-vars
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${process.env.VUE_APP_URL}product/${id}`)
+          .then((res) => {
+            resolve(res);
+          });
+      });
     },
     GETUSER(context) {
       axios

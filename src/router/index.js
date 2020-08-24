@@ -29,7 +29,7 @@ const routes = [
     },
   },
   {
-    path: '/detail-product/:id',
+    path: '/detail-product/:id_product',
     name: 'Detail',
     component: Detail,
     meta: {

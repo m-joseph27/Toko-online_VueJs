@@ -4,14 +4,14 @@
           @modal-clicked="showModal"/>
   <div class="detailProduct">
     <div class="imageProduct">
-      <img :src="details.photo" alt="">
+      <img :src="details.photo" alt="product">
     </div>
     <div class="description">
       <div class="productName">
         <h3>{{details.nm_product}}</h3>
       </div>
       <div class="productPrice">
-        <h5>{{details.price}}</h5>
+        <h5>Rp: <span>{{details.price}}</span></h5>
       </div>
       <div class="productDescription">
         <p>{{details.description}}
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Navbar from './Navbar.vue';
 import Footer from '../Footer.vue';
 import Cart from './Cart.vue';
@@ -40,8 +39,7 @@ export default {
   name: 'detail',
   data() {
     return {
-      details: '',
-      selectedProduct: [],
+      details: [],
     };
   },
   components: {
@@ -63,21 +61,13 @@ export default {
   },
 
   mounted() {
-    axios
-      .get(`http://localhost:1111/api/product/${this.$route.params.id}`)
+    this.$store.dispatch('GETPRODUCTID', this.$route.params.id_product)
       .then((res) => {
         // eslint-disable-next-line prefer-destructuring
         this.details = res.data.data[0];
       });
-    this.$store.dispatch('GETPRODUCT');
-    axios.get(`http://localhost:1111/api/product?page=${this.currentPage}`)
-      .then((res) => {
-        // eslint-disable-next-line prefer-destructuring
-        this.product = res.data.result[2];
-        // eslint-disable-next-line prefer-destructuring
-        this.totalPage = res.data.result[0];
-      });
   },
+
   computed: {
     getProduct() {
       return this.$store.state.product;
